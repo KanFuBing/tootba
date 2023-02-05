@@ -10,9 +10,9 @@ const Wordcloud = ({ content, error, title }) => {
     const segments = Array.from(new Intl.Segmenter('ja-JP', { granularity: 'word' }).segment(passage)).map((segment) => segment.segment)
     setWords(Object.values(segments.reduce((prev, curr) => {
       // filter kanas, numbers, marks
-      if (!curr.match(/^[ぁ-ん1-9ー　.,:!@#$%^&*?=…ー―‐\p…\(\)\[\]－/\t‘’。、，？！：“”「」『』【】（）《》＾＃＆％＄＠＝*的是了]*$/)) {
+      if (error || !curr.match(/^[ぁ-んー　.,:!@#$%^&*?=…ー―‐\p\n…\(\)\[\]－/\t‘’。、，？！：“”「」『』【】（）《》＾＃＆％＄＠＝*的是了]|[(you)(he)(the)(she)(it)(a)(of)(on)(to)(in)(be)(is)(was)(are)(were)(am)]$/)) {
         if (prev[curr]) {
-          prev[curr].size += 15
+          prev[curr].size += prev[curr].size > 80 ? 1 : 15
         }
         else {
           prev[curr] = { text: curr, size: error ? 50 : 12 }

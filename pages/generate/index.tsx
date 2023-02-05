@@ -22,7 +22,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     }
   }
   else {
-    const content = statuses.map((status: { content: any }) => convert(status.content)).join().replace(/(?:https?|ftp):\/\/[\n\S]+/g, '')
+    const content = statuses.map((status: { content: any }) => convert(status.content).toLowerCase()).join().replace(/(?:https?|ftp):\/\/[\n\S]+/g, '')
     return {
       props: {
         content
