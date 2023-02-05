@@ -49,7 +49,6 @@ const Wordcloud = ({ content, error, title }) => {
         .attr('transform', (d) => `translate(${d.x},${d.y}) rotate(${d.rotate})`)
         .text((d) => d.text)
     }
-    return () => document.querySelector('#container').querySelector('svg[height="500"]')?.remove() // avoid rendering twice in dev mode
   }, [error, words])
 
   return <Layout noPadding title={title}/>
