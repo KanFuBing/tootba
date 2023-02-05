@@ -23,6 +23,7 @@ const Wordcloud = ({ content, error, title }) => {
   }, [error, content])
 
   useEffect(() => {
+    const container = document.getElementById('container')
     const layout = wordcloud()
       .size([innerWidth * 0.8, 500])
       .words(words)
@@ -33,7 +34,8 @@ const Wordcloud = ({ content, error, title }) => {
       .on('end', draw)
     layout.start()
     function draw(words) {
-      document.getElementById('container').textContent = ''
+      container.textContent = ''
+      console.log(words)
       d3.select('#container').append('svg')
         .attr('width', layout.size()[0])
         .attr('height', layout.size()[1])
