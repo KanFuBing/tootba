@@ -10,7 +10,7 @@ const Wordcloud = ({ content, error, title }) => {
     const segments = Array.from(new Intl.Segmenter('ja-JP', { granularity: 'word' }).segment(passage)).map((segment) => segment.segment)
     setWords(Object.values(segments.reduce((prev, curr) => {
       // filter kanas, numbers, marks
-      if (!curr.match(/^[ぁ-ん1-9ー　.,:!@#$%^&*?=…ー―‐\p…\[\]－/\t‘’。、，？！：“”「」『』【】＾＃＆％＄＠＝*]*$/)) {
+      if (!curr.match(/^[ぁ-ん1-9ー　.,:!@#$%^&*?=…ー―‐\p…\(\)\[\]－/\t‘’。、，？！：“”「」『』【】（）《》＾＃＆％＄＠＝*的是了]*$/)) {
         if (prev[curr]) {
           prev[curr].size += 15
         }
@@ -33,6 +33,7 @@ const Wordcloud = ({ content, error, title }) => {
       .on('end', draw)
     layout.start()
     function draw(words) {
+      document.getElementById('container').textContent = ''
       d3.select('#container').append('svg')
         .attr('width', layout.size()[0])
         .attr('height', layout.size()[1])
@@ -47,11 +48,11 @@ const Wordcloud = ({ content, error, title }) => {
         .style('fill', () => `rgb(${Math.floor(Math.random() * (error ? 256 : 120))},${Math.floor(Math.random() * 120)},${Math.floor(Math.random() * 120)})`)
         .attr('text-anchor', 'middle')
         .attr('transform', (d) => `translate(${d.x},${d.y}) rotate(${d.rotate})`)
-        .text((d) => d.text)
+        .text((d) => d.text).enter()
     }
   }, [error, words])
 
-  return <Layout noPadding title={title}/>
+  return <Layout noPadding title={title} />
 }
 
 export default Wordcloud
