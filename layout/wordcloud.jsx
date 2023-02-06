@@ -54,7 +54,7 @@ const Wordcloud = ({ content, error, title }) => {
         .style('fill', () => randomColor(mode === 'dark' ? 156 : 0, 100))
         .attr('text-anchor', 'middle')
         .attr('transform', (d) => `translate(${d.x},${d.y}) rotate(${d.rotate})`)
-        .text((d) => d.text).enter()
+        .text((d) => d.text)
     }
   }, [error, mode, words])
 

@@ -1,5 +1,5 @@
 import Layout from '@/layout'
-import { InputLabel, Input, InputAdornment, Button } from '@mui/material'
+import { InputLabel, Input, InputAdornment, Button, Typography } from '@mui/material'
 import StorageIcon from '@mui/icons-material/Storage'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import { ChangeEventHandler, useState } from 'react'
@@ -48,6 +48,12 @@ const Home = () => {
 
       <br></br><br></br>
       <Button variant='outlined' LinkComponent={Link} href={`/generate?instance=${params.instance}&username=${params.username}`}>Word Cloud を生成する</Button>
+
+      <br></br><br></br>
+      <Typography fontStyle='italic'>
+        ダークモードはさらに良いですよ。<br></br>
+        エラーが発生する場合は、Google Chrome をご利用ください。
+      </Typography>
     </Layout>
   )
 }
