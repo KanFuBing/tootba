@@ -4,4 +4,4 @@
 
 OAuth なし。パブリック API を利用する。
 
-![Preview](./public/card.jpg)
+![Card](https://user-images.githubusercontent.com/110780208/216934972-d90a2192-b551-4c73-a4ba-31c624f61fda.jpg)

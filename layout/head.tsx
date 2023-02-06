@@ -15,7 +15,7 @@ const LayoutHead = ({ title }: {
         <meta name='mobile-web-app-capable' content='yes' />
         <meta name='msapplication-TileColor' content='#205E61' />
         <meta name='msapplication-tap-highlight' content='no' />
-        <meta name='theme-color' content='rgb(159,195,250)' />
+        <meta name='theme-color' content='rgb(97,116,113)' />
 
         <link rel='apple-touch-icon' href='/apple-touch-icon.png' />
 
@@ -27,7 +27,7 @@ const LayoutHead = ({ title }: {
         <meta property='og:title' content={`${title} | トゥート葉`} />
         <meta property='og:description' content='マストドンのトゥートでよく使う言葉の Word Cloud を生成しよう！' />
         <meta property='og:type' content='website' />
-        <meta property='og:image' content='https://tootba.chuangwai.top/card.jpg' />
+        <meta property='og:image' content='https://user-images.githubusercontent.com/110780208/216934972-d90a2192-b551-4c73-a4ba-31c624f61fda.jpg' />
     </Head>
 )
 

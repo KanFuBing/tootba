@@ -1,6 +1,6 @@
 {
     "name": "トゥート葉",
-    "short_name": "Tootba",
+    "short_name": "トゥート葉",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
@@ -19,8 +19,8 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "rgb(159,195,250)",
-    "background_color": "rgb(159,195,250)",
+    "theme_color": "rgb(97,116,113)",
+    "background_color": "rgb(97,116,113)",
     "start_url": "/",
     "display": "standalone",
     "orientation": "portrait"
