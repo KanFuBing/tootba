@@ -4,4 +4,4 @@
 
 OAuth なし。パブリック API を利用する。
 
-![Preview](public/card.jpg)
+![Preview](./public/card.jpg)

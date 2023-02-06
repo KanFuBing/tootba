@@ -20,7 +20,7 @@ const LayoutBar = () => {
                 </Link>
                 <Image src='/android-chrome-192x192.png' width={32} height={32} alt='Tootba Logo'></Image>
                 <Box sx={{ flexGrow: 1 }} />
-                <IconButton target='_blank' rel='noreferrer' href='https://github.com/chuangwaiproj/tootba'>
+                <IconButton target='_blank' rel='noreferrer' href='https://github.com/kanfubing/tootba'>
                     <GithubIcon></GithubIcon>
                 </IconButton>
             </Toolbar>
