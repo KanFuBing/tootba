@@ -1,17 +1,20 @@
-import { AppBar, Toolbar, Typography, Box, IconButton } from '@mui/material'
+import { AppBar, Toolbar, Typography, Box, IconButton, useTheme } from '@mui/material'
 import GithubIcon from '@mui/icons-material/GitHub'
 import Image from 'next/image'
 import Link from 'next/link'
 
 const LayoutBar = () => {
+    const mode = useTheme().palette.mode
     return (
         <AppBar color='transparent' position='fixed' sx={{
             top: 0,
-            background: 'rgba(0, 0, 0, 0) linear-gradient(to right, rgba(251, 207, 232, 0.9), rgba(167, 243, 208, 0.4)) repeat scroll 0% 0% / auto padding-box border-box'
+            background: mode === 'dark' ?
+                'rgba(0, 0, 0, 0) linear-gradient(to right, rgba(125, 101, 116, 0.9), rgba(167, 243, 208, 0.4)) repeat scroll 0% 0% / auto padding-box border-box' :
+                'rgba(0, 0, 0, 0) linear-gradient(to right, rgba(251, 207, 232, 0.9), rgba(167, 243, 208, 0.4)) repeat scroll 0% 0% / auto padding-box border-box'
         }}>
             <Toolbar>
                 <Link href='/'>
-                    <Typography sx={{ mr: 1, fontWeight: 'bolder' }} variant='h5' color='#558b2f'>
+                    <Typography sx={{ mr: 1, fontWeight: 'bolder' }} variant='h5' color={mode === 'dark' ? 'rgb(170,255,94)' : 'rgb(85,139,47)'}>
                         トゥート葉
                     </Typography>
                 </Link>

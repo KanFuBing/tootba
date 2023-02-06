@@ -2,6 +2,8 @@ import Layout from '@/layout'
 import wordcloud from '@/lib/wordcloud'
 import { useEffect, useState } from 'react'
 import * as d3 from 'd3'
+import randomColor from '@/lib/random'
+import { useTheme } from '@mui/material'
 
 const Wordcloud = ({ content, error, title }) => {
   const [words, setWords] = useState([{ text: 'しばらく', size: 30, color: 'yellow' }, { text: 'お待ち', size: 100 }, { text: 'ください', size: 60 }, { text: '...', size: 50 }])
@@ -21,6 +23,8 @@ const Wordcloud = ({ content, error, title }) => {
       return prev
     }, {})))
   }, [error, content])
+
+  const mode = useTheme().palette.mode
 
   useEffect(() => {
     const container = document.getElementById('container')
@@ -47,12 +51,12 @@ const Wordcloud = ({ content, error, title }) => {
         .style('font-size', (d) => `${d.size}px`)
         .style('font-family', 'Impact')
         .style('font-weight', 'bold')
-        .style('fill', () => `rgb(${Math.floor(Math.random() * (error ? 256 : 120))},${Math.floor(Math.random() * 120)},${Math.floor(Math.random() * 120)})`)
+        .style('fill', () => randomColor(mode === 'dark' ? 156 : 0, 100))
         .attr('text-anchor', 'middle')
         .attr('transform', (d) => `translate(${d.x},${d.y}) rotate(${d.rotate})`)
         .text((d) => d.text).enter()
     }
-  }, [error, words])
+  }, [error, mode, words])
 
   return <Layout noPadding title={title} />
 }
