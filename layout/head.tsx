@@ -15,7 +15,7 @@ const LayoutHead = ({ title }: {
         <meta name='mobile-web-app-capable' content='yes' />
         <meta name='msapplication-TileColor' content='#205E61' />
         <meta name='msapplication-tap-highlight' content='no' />
-        <meta name='theme-color' content='#205E61' />
+        <meta name='theme-color' content='rgb(159,195,250)' />
 
         <link rel='apple-touch-icon' href='/apple-touch-icon.png' />
 
