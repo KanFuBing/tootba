@@ -1,6 +1,6 @@
 # トゥート葉
 
-最近の四十件のトゥートによってよく使う言葉の Word Cloud を生成するウェブサイト。
+最近の四十件のトゥートによってよく使う言葉の [Word Cloud](https://github.com/jasondavies/d3-cloud) を生成するウェブサイト。
 
 OAuth なし。パブリック API を利用する。
 

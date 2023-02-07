@@ -1,16 +1,17 @@
 import Layout from '@/layout'
 import wordcloud from '@/lib/wordcloud'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import * as d3 from 'd3'
 import randomColor from '@/lib/random'
 import { useTheme } from '@mui/material'
 
 const Wordcloud = ({ content, error, title }) => {
-  const [words, setWords] = useState([{ text: 'しばらく', size: 30, color: 'yellow' }, { text: 'お待ち', size: 100 }, { text: 'ください', size: 60 }, { text: '...', size: 50 }])
+  const mode = useTheme().palette.mode
+
   useEffect(() => {
     const passage = error ?? content
     const segments = Array.from(new Intl.Segmenter('ja-JP', { granularity: 'word' }).segment(passage)).map((segment) => segment.segment)
-    setWords(Object.values(segments.reduce((prev, curr) => {
+    const words = Object.values(segments.reduce((prev, curr) => {
       // filter kanas, numbers, marks
       if (error || !curr.match(/^[ぁ-んー　.,:!@#$%^&*?=…ー―‐\p\n…\(\)\[\]－/\t‘’。、，？！：“”「」『』【】（）《》＾＃＆％＄＠＝*的是了]|[(you)(he)(the)(she)(it)(a)(of)(on)(to)(in)(be)(is)(was)(are)(were)(am)]$/)) {
         if (prev[curr]) {
@@ -21,13 +22,7 @@ const Wordcloud = ({ content, error, title }) => {
         }
       }
       return prev
-    }, {})))
-  }, [error, content])
-
-  const mode = useTheme().palette.mode
-
-  useEffect(() => {
-    const container = document.getElementById('container')
+    }, {}))
     const layout = wordcloud()
       .size([innerWidth * 0.8, 500])
       .words(words)
@@ -38,16 +33,17 @@ const Wordcloud = ({ content, error, title }) => {
       .on('end', draw)
     layout.start()
     function draw(words) {
-      container.textContent = ''
-      console.log(words)
-      d3.select('#container').append('svg')
+      d3.select('#container')
+        .html('')
+        .append('svg')
         .attr('width', layout.size()[0])
         .attr('height', layout.size()[1])
         .append('g')
         .attr('transform', `translate(${layout.size()[0] / 2},${layout.size()[1] / 2})`)
         .selectAll('text')
         .data(words)
-        .enter().append('text')
+        .enter()
+        .append('text')
         .style('font-size', (d) => `${d.size}px`)
         .style('font-family', 'Impact')
         .style('font-weight', 'bold')
@@ -56,7 +52,7 @@ const Wordcloud = ({ content, error, title }) => {
         .attr('transform', (d) => `translate(${d.x},${d.y}) rotate(${d.rotate})`)
         .text((d) => d.text)
     }
-  }, [error, mode, words])
+  }, [content, error, mode])
 
   return <Layout noPadding title={title} />
 }
